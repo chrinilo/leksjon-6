@@ -4,6 +4,8 @@ import random
 class entity:
     def __init__(self):
         self.t = turtle.Turtle()
+    class player:
+        pass
     class enemy:
         def __init__(self):
             t = [turtle.Turtle(),turtle.Turtle(),turtle.Turtle]
