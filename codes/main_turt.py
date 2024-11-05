@@ -35,9 +35,11 @@ class entity:
                 if dire == 1:
                     for j in range(num):
                         self.t[i].forward(1)
+                
                 elif dire == 2:
                     for j in range(num):
                         self.t[i].back(1)
+
                 elif dire == 3:
                     self.t[i].left(num)
                 
@@ -47,6 +49,7 @@ class entity:
 
 def mainloop():
     scr = turtle.Screen()
+    enemy = entity.enemy(1)
     player = entity.player()
     while True:
         scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
@@ -54,6 +57,7 @@ def mainloop():
         scr.onkeypress(player.left, 'a');scr.onkeypress(player.left, 'Left')
         scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
         scr.listen()
+        enemy.enemy
         scr.update()
 
 if __name__ == "__main__":
