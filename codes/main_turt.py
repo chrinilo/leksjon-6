@@ -30,6 +30,7 @@ class entity:
         
         def enemy(self):
             for i in range(self.mengde):
+                print(i)
                 dire = random.randint(1,4)
                 num = random.randint(1,50)
                 if dire == 1:
@@ -45,19 +46,18 @@ class entity:
                 
                 elif dire == 4:
                     self.t[i].right(num)
-                
 
 def mainloop():
     scr = turtle.Screen()
-    enemy = entity.enemy(1)
-    player = entity.player()
+    enemy = entity.enemy(10)
+    # player = entity.player()
     while True:
-        scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
-        scr.onkeypress(player.back, 's');scr.onkeypress(player.back, 'Down')
-        scr.onkeypress(player.left, 'a');scr.onkeypress(player.left, 'Left')
-        scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
-        scr.listen()
-        enemy.enemy
+        # scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
+        # scr.onkeypress(player.back, 's');scr.onkeypress(player.back, 'Down')
+        # scr.onkeypress(player.left, 'a');scr.onkeypress(player.left, 'Left')
+        # scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
+        # scr.listen()
+        enemy.enemy()
         scr.update()
 
 if __name__ == "__main__":
