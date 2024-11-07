@@ -20,17 +20,16 @@ class entety:
     def tresure(self, x, y):
         pygame.draw.rect(self.scr, (0, 0, 255), (x, y, self.x, self.y))
 
-
 def event_handler(event, scr):
     if event.type == pygame.QUIT:
         return "Q"
 
 def main_loop(scr):
     RUN = True
-    # play_x, play_y = 50, 20
+    play_x, play_y = 50, 20
     ent = entety(scr)
     tresure_x, tresure_y = random.randint(50, 780), random.randint(50, 780)
-    # ent.player(play_x, play_y)
+    ent.player(play_x, play_y)
 
     while RUN:
         keys = pygame.key.get_pressed()
@@ -47,9 +46,17 @@ def main_loop(scr):
         if ev_r == "Q":
             RUN = False
 
+        if keys[pygame.K_w]:
+            play_y -=1
+        if keys[pygame.K_s]:
+            play_y +=1
+        if keys[pygame.K_a]:
+            play_x -=1
+        if keys[pygame.K_d]:
+            play_x +=1
 
 
-        # ent.player(play_x, play_y)
+        ent.player(play_x, play_y)
         pygame.display.flip()
 
 
