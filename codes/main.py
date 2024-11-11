@@ -54,7 +54,9 @@ def main_loop(scr):
             play_x -=1
         if keys[pygame.K_d]:
             play_x +=1
-
+        if (tresure_x <= play_x<= tresure_x+20 or tresure_y <= play_y<= tresure_y+20):
+            print("win")
+            main_loop(scr)
 
         ent.player(play_x, play_y)
         pygame.display.flip()
