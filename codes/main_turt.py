@@ -42,12 +42,12 @@ class entity:
                 dire = random.randint(1,4)
                 num = random.randint(1,50)
                 if dire == 1:
-                    for j in range(num):
-                        self.t[i].forward(1)
+                    #for j in range(num):
+                        self.t[i].forward(2)
                 
                 elif dire == 2:
-                    for j in range(num):
-                        self.t[i].back(1)
+                    #for j in range(num):
+                        self.t[i].back(2)
 
                 elif dire == 3:
                     self.t[i].left(num)
@@ -57,16 +57,18 @@ class entity:
 
 def mainloop():
     scr = turtle.Screen()
-    enemy = entity.enemy(3)
+    enemy = entity.enemy(100)
     player = entity.player()
+    scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
+    scr.onkeypress(player.left, 'a');scr.onkeypress(player.left, 'Left')
+    scr.onkeypress(player.back, 's');scr.onkeypress(player.back, 'Down')
+    scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
     while True:
-        scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
-        scr.onkeypress(player.back, 's');scr.onkeypress(player.back, 'Down')
-        scr.onkeypress(player.left, 'a');scr.onkeypress(player.left, 'Left')
-        scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
         scr.listen()
         enemy.enemy()
         scr.update()
+        for i in turtle.turtles():
+            print(i)
 
 if __name__ == "__main__":
     mainloop()
