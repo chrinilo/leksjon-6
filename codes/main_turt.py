@@ -29,7 +29,7 @@ class entity: # kan egentlig fjerne
         
         def left(self):
             self.t.left(45)
-        
+
     class enemy: # lager finden(e)
         def __init__(self,mengde):
             self.t = []
@@ -38,7 +38,7 @@ class entity: # kan egentlig fjerne
                 self.t.append(turtle.Turtle("classic"))
                 self.t[i].color(random.randint(1,255),random.randint(1,255),random.randint(1,255))
 
-        
+                
         def enemy(self): # koden som faktisk beveger på seg
             for i in range(self.mengde):
                 ic(i)
@@ -71,6 +71,13 @@ def mainloop(): # main loop som har alle tingene som skal repitere i lokale vari
         enemy.enemy()
         scr.update()
         for i in turtle.turtles():
+            if (i == player.t):
+                print("ikke død")
+            
+            elif (i.distance(player.t )<=10):
+                print("død")
+            
+            
             ic(i.pos())
             if i.pos()[1] <= -355:
                 print("bunn")
@@ -95,7 +102,6 @@ def mainloop(): # main loop som har alle tingene som skal repitere i lokale vari
                 i.penup()
                 i.setpos(-382,i.pos()[1])
                 i.pendown()
-        
         
         ic (scr.screensize())
 
