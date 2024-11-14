@@ -10,6 +10,14 @@ turtle.colormode(255) # lar turtle bruke RGB verdier
 scr = turtle.Screen() # funksjonene som turtlen ikke skal gjøre
 # turtle.register_shape("assets/player.gif") # skal legge til mere men denne legger til en gif fil til en form
 
+class buttons:
+    
+    def __init__(self, *args, **kwargs):
+        self.but = {"map":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
+                    "shape":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
+                    "reset":turtle.Turtle()}
+    
+
 class entity: # kan egentlig fjerne
     class player: # lager spilleren 
         def __init__(self): #lager avriablene som skal bli brukt i klassen
@@ -42,7 +50,12 @@ class entity: # kan egentlig fjerne
             for i in range(mengde): # lager alle turtlene til finde klassen og lagrer dem i en liste
                 self.t.append(turtle.Turtle("classic"))
                 self.t[i].color(random.randint(1,255),random.randint(1,255),random.randint(1,255))
-
+                self.t[i].ht()
+                self.t[i].pu()
+                self.t[i].setpos(random.randint(-200,200), random.randint(-200,200)) #
+                self.t[i].pd()
+                self.t[i].st()
+                
                 
         def enemy(self): # koden som faktisk beveger på seg
             for i in range(self.mengde):
@@ -64,7 +77,7 @@ class entity: # kan egentlig fjerne
 
 def mainloop(): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
     scr = turtle.Screen()
-    enemy = entity.enemy(5)
+    enemy = entity.enemy(6)
     player = entity.player()
     scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
     scr.onkeypress(player.left, 'a');scr.onkeypress(player.left,  'Left')
@@ -76,7 +89,7 @@ def mainloop(): # main loop som har alle tingene som skal repitere i lokale vari
         scr.update()
         for i in turtle.turtles():
             
-            if (i != player.t and i.distance(player.t)<=10):
+            if (i != player.t and i.distance(player.t)<=15):
                 raise SystemExit
             
             
