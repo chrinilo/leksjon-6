@@ -13,9 +13,20 @@ scr = turtle.Screen() # funksjonene som turtlen ikke skal gjøre
 class buttons:
     
     def __init__(self, *args, **kwargs):
-        self.but = {"map":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
+        self.turtles = {"map":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
                     "shape":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
                     "reset":turtle.Turtle()}
+        self.map = []
+        
+        self.scr = args[0]#screen
+        self.screen = turtle.screen()
+        
+    def map_1(self):
+        self.screen.bgpic()
+    def map_2(self):
+        self.screen.bgpic()
+    def map_2(self):
+        self.screen.bgpic()
     
 
 class entity: # kan egentlig fjerne
@@ -76,6 +87,7 @@ class entity: # kan egentlig fjerne
                     self.t[i].right(num)
 
 def mainloop(): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
+    but = buttons(scr)
     scr = turtle.Screen()
     enemy = entity.enemy(6)
     player = entity.player()
