@@ -1,2 +1,3 @@
-import turtle
-turtle.turtles
+import random
+
+random.randint
