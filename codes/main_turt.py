@@ -9,25 +9,24 @@ except ImportError: # hvis man mangler et eller flere lib's så skal denne koden
 turtle.colormode(255) # lar turtle bruke RGB verdier
 scr = turtle.Screen() # funksjonene som turtlen ikke skal gjøre
 # turtle.register_shape("assets/player.gif") # skal legge til mere men denne legger til en gif fil til en form
-
 class buttons:
     
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args):
         self.turtles = {"map":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
                     "shape":[turtle.Turtle(),turtle.Turtle(),turtle.Turtle()],
                     "reset":turtle.Turtle()}
-        self.map = []
+        self.map = ["assets/map1.png"]
         
         self.scr = args[0]#screen
-        self.screen = turtle.screen()
         
     def map_1(self):
-        self.screen.bgpic()
+        self.scr.bgpic(self.map[0])
     def map_2(self):
-        self.screen.bgpic()
+        self.scr.bgpic()
     def map_2(self):
-        self.screen.bgpic()
+        self.scr.bgpic()
     
+buttons(scr).map_1()
 
 class entity: # kan egentlig fjerne
     class player: # lager spilleren 
@@ -49,10 +48,10 @@ class entity: # kan egentlig fjerne
             self.t.back(1)
         
         def right(self):
-            self.t.right(45)
+            self.t.right(30)
         
         def left(self):
-            self.t.left(45)
+            self.t.left(30)
 
     class enemy: # lager finden(e)
         def __init__(self,mengde):
@@ -86,7 +85,7 @@ class entity: # kan egentlig fjerne
                 elif (dire == 4):
                     self.t[i].right(num)
 
-def mainloop(): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
+def mainloop(scr): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
     but = buttons(scr)
     scr = turtle.Screen()
     enemy = entity.enemy(6)
@@ -126,4 +125,4 @@ def mainloop(): # main loop som har alle tingene som skal repitere i lokale vari
                 i.pendown()
 
 if __name__ == "__main__":
-    mainloop()
+    mainloop(scr)
