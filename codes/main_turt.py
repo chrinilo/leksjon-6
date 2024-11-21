@@ -1,11 +1,10 @@
-try:    #importrer biblioteker som brukes under debugging eller er nødvendige for at koden skal fungere
-    import turtle # gui lib
-    import random # tilfeldige tall
-    from icecream import ic #debugging 
-    import tkinter
-except ImportError: # hvis man mangler et eller flere lib's så skal denne koden kjøre
-    print("missing imports")
-    raise SystemExit # slutter koden så den ikke forsetter med all den andre koden
+# try:    #importrer biblioteker som brukes under debugging eller er nødvendige for at koden skal fungere
+import turtle # gui lib
+import random # tilfeldige tall
+# from icecream import ic #debugging 
+# except ImportError: # hvis man mangler et eller flere lib's så skal denne koden kjøre
+#     print("missing imports")
+#     raise SystemExit # slutter koden så den ikke forsetter med all den andre koden
 
 turtle.colormode(255) # lar turtle bruke RGB verdier
 scr = turtle.Screen() # funksjonene som turtlen ikke skal gjøre
@@ -14,27 +13,23 @@ class buttons:
     
     def __init__(self, *args):
         turtle.register_shape("./assets/buttons/menu_button.gif")
-        self.turtles = {"menu":turtle.Turtle("./assets/buttons/menu_button.gif")
-                        
-                        ,"map":[turtle.Turtle(),   
-                        turtle.Turtle(),turtle.Turtle()],
-                        
-                        "shape":[turtle.Turtle(),
-                        turtle.Turtle(),turtle.Turtle()],
-                        
-                        "reset":turtle.Turtle()}
-        self.map = ["assets/map1.png"]
+        self.map = ["assets/maps/map1.png","assets/maps/map2.gif"]
+        self.tersure = turtle.Turtle()
         self.player = ["assets/player.gif","assets/player_modle2.gif"]
         self.scr = args[0]#screen
         
-    def map_1(self):
-        self.scr.bgpic(self.map[0])
-    def map_2(self):
-        self.scr.bgpic()
-    def map_2(self):
-        self.scr.bgpic()
-    
-buttons(scr).map_1()
+        
+    def maps(self,x):
+        
+        if x == 1:
+            self.scr.bgpic(self.map[0])
+            return 
+        if x == 2:
+            self.scr.bgpic(self.map[1])
+        if x == 3:
+            self.scr.bgpic(self.map[2])
+
+
 
 class entity:
     class player: # lager spilleren 
@@ -93,27 +88,25 @@ class entity:
                 elif (dire == 4):
                     self.t[i].right(num)
 
-def mainloop(scr): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
-    
-    tk = tkinter.Tk()
-    tk.title("map")
-    tk.geometry("200x300")
-    but = buttons(scr)
-    input_box_map = tkinter.Text(tk,height=10,width=20)
-    
-    
+
+
+
+def mainloop_(scr): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
     scr = turtle.Screen()
-    enemy = entity.enemy(6)
+    but = buttons(scr)
+    but.maps(int(scr.numinput("map", "which map do you want to play. (1,2,3)")))
+    enemy = entity.enemy(0)
     player = entity.player()
-    scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
-    scr.onkeypress(player.left, 'a');scr.onkeypress(player.left,  'Left')
-    scr.onkeypress(player.back, 's');scr.onkeypress(player.back,  'Down')
-    scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
     
+    scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
+    scr.onkeypress(player.back, 's');scr.onkeypress(player.back,  'Down')
+    scr.onkeypress(player.left, 'a');scr.onkeypress(player.left,  'Left')
+    scr.onkeypress(player.right,'d');scr.onkeypress(player.right, 'Right')
     while (True):
         scr.listen()
         enemy.enemy()
         scr.update()
+        print(player.t.pos())
         for i in turtle.turtles():
             
             if (i != player.t and i.distance(player.t)<=15):
@@ -140,5 +133,5 @@ def mainloop(scr): # main loop som har alle tingene som skal repitere i lokale v
                 i.pendown()
 
 if __name__ == "__main__":
-    mainloop(scr)
-print("kjørt")
+    mainloop_(scr)
+
