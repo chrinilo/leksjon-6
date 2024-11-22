@@ -37,15 +37,16 @@ class entity:
     class player: # lager spilleren 
         def __init__(self): #lager avriablene som skal bli brukt i klassen
             self.t = turtle.Turtle()
-            self.shape1 = ["assets/sprites/player.gif", "assets/sprites/player_modle2.gif","assets/sprites/player_modle2.gif"]
-            for i in self.shape1:
-                turtle.register_shape(i)
+            self.shape1 = [ "assets/sprites/player.gif",
+                            "assets/sprites/player_modle2.gif",
+                            "assets/sprites/player_modle2.gif"]
+            for i in self.shape1:turtle.register_shape(i)
+            # hjemmer pennen og turtlen flytter turtlen og gjør om på koden på de to første linjenne
             self.t.ht()
             self.t.pu()
-            self.t.setpos((-80,130)) #
+            self.t.setpos((-80,130))
             self.t.pd()
             self.t.st()
-            # self.t.shapesize(0.4,0.4)
 
         def forwa(self): # alle rettningen for turtlen å gå
             self.t.forward(1)
@@ -69,7 +70,7 @@ class entity:
 
     class enemy: # lager finden(e)
         def __init__(self,mengde):
-            self.t = []
+            self.t = [] #lager en tom liste som skal ha findeturtlene.
             self.mengde = mengde
             for i in range(mengde): # lager alle turtlene til finde klassen og lagrer dem i en liste
                 self.t.append(turtle.Turtle("classic"))
@@ -96,22 +97,22 @@ class entity:
                 elif (dire == 4):
                     self.t[i].right(num)
 
-def mainloop_(scr): # main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
+# main loop som har alle tingene som skal repitere i lokale variabler og henter resten av klassene
+def mainloop_(scr): 
     run = True # main loopen vin var
     #lager variabler med verdier til alle klassene
     but = buttons(scr) 
     enemy = entity.enemy(3)
     player = entity.player()
-    
-    # hviket kart spilleren vil spille
-    but.maps(int(scr.numinput("map", "which map do you want to play. (1,2,3)")))
-    # hvilken sprite spilleren skal bruke
-    player.shape(int(scr.numinput("skin","which player model dou you want to use? (1,2,3)")))
-    
-    # vansklighetsgraden til spillet
-    dif = int(scr.numinput("diff", "which difficulty do you want to play (1 = hard, 2 = easy)"))
-    if dif == 1:scr.tracer(0) # setter den til å være vanskligere
-    
+    try:
+        # hviket kart spilleren vil spille
+        but.maps(int(scr.numinput("map", "which map do you want to play. (1,2,3)")))
+        # hvilken sprite spilleren skal bruke
+        player.shape(int(scr.numinput("skin","which player model dou you want to use? (1,2,3)")))
+        # vansklighetsgraden til spillet
+        dif = int(scr.numinput("diff", "which difficulty do you want to play (1 = hard, 2 = easy)"))
+        if dif == 1:scr.tracer(0) # setter den til å være vanskligere
+    except:raise SystemExit
     # except TypeError:print("wright a number between 1 and 3")
     scr.onkeypress(player.forwa,'w');scr.onkeypress(player.forwa, 'Up')
     scr.onkeypress(player.back, 's');scr.onkeypress(player.back,  'Down')
@@ -128,7 +129,6 @@ def mainloop_(scr): # main loop som har alle tingene som skal repitere i lokale 
         enemy.enemy()
         # oppdaterer skjermen for når du spiller den vansklighere modusen
         scr.update()
-
         #sjekker på alle turtlene
         for i in turtle.turtles():
             # vin cheken
