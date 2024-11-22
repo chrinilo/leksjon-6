@@ -3,6 +3,8 @@ try:    #importrer biblioteker som brukes under debugging eller er nødvendige f
     import random # tilfeldige tall
     from time import sleep # fps
     from tkinter import messagebox # alle popupsa
+    from pygame import mixer
+    from icecream import ic
 except ImportError: # hvis man mangler et eller flere lib's så skal denne koden kjøre
     print("missing imports")
     raise SystemExit # slutter koden så den ikke forsetter med all den andre koden
@@ -10,6 +12,10 @@ except ImportError: # hvis man mangler et eller flere lib's så skal denne koden
 turtle.colormode(255) # lar turtle bruke RGB verdier
 scr = turtle.Screen() # funksjonene som turtlen ikke skal gjøre
 # turtle.register_shape("assets/player.gif") # skal legge til mere men denne legger til en gif fil til en form
+def sound():
+    mixer.init()
+    mixer.music.load("assets/sound/musikk.wav","musikk.wav")
+    mixer.music.play(start=0, loops=10000000)
 class buttons: # klasse for å bytte kart
     
     def __init__(self, *args):
@@ -101,6 +107,7 @@ class entity:
 def mainloop_(scr): 
     run = True # main loopen vin var
     #lager variabler med verdier til alle klassene
+    sound()
     but = buttons(scr) 
     enemy = entity.enemy(3)
     player = entity.player()
